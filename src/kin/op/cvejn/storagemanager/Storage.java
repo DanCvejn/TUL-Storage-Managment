@@ -73,16 +73,16 @@ public class Storage {
             this.storedProducts = new Product[1];
             this.storedProducts[0] = product;
             product.setStored(true);
-            System.out.println("\n\n!!!\nProdukt " + product.getName() + " ulozen do tohoto prostoru\n!!!");
+            System.out.println("Produkt " + product.getName() + " ulozen do tohoto prostoru");
         } else if (this.storedProducts.length >= this.size) {
-            System.out.println("\n\n!!!\nTento prostor je jiz plny\n!!!");
+            System.out.println("Tento prostor je jiz plny");
         }else {
             Product[] newStoredProducts = new Product[this.storedProducts.length + 1];
             System.arraycopy(this.storedProducts, 0, newStoredProducts, 0, this.storedProducts.length);
             newStoredProducts[this.storedProducts.length] = product;
             this.storedProducts = newStoredProducts;
             product.setStored(true);
-            System.out.println("\n\n!!!\nProdukt " + product.getName() + " ulozen do tohoto prostoru\n!!!");
+            System.out.println("Produkt " + product.getName() + " ulozen do tohoto prostoru");
         }
     }
 }

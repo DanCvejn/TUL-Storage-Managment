@@ -51,6 +51,41 @@ public class Menus {
           new Product(name, price, count);
           System.out.println("Produkt " + name + " s cenou " + price + "Kc a poctem kusu " + count + " byl vytvoren.");
           break;
+        case 2:
+          printers.printProductsList();
+          if (Product.productsList == null) {
+            break;
+          }
+          System.out.println("Zadejte nazev produktu: ");
+          name = userInputs.getString();
+          Product product = Product.getProductByName(name);
+          if (product == null) {
+            System.out.println("Produkt s nazvem " + name + " nebyl nalezen.");
+            break;
+          }
+          System.out.println("Zadejte novou cenu produktu: ");
+          price = userInputs.getNumber();
+          System.out.println("Zadejte novy pocet kusu produktu: ");
+          count = userInputs.getNumber();
+          product.setPrice(price);
+          product.setCount(count);
+          System.out.println("Produkt " + name + " byl upraven.");
+          break;
+        case 3:
+          printers.printProductsList();
+          if (Product.productsList == null) {
+            break;
+          }
+          System.out.println("Zadejte nazev produktu: ");
+          name = userInputs.getString();
+          product = Product.getProductByName(name);
+          if (product == null) {
+            System.out.println("Produkt s nazvem " + name + " nebyl nalezen.");
+            break;
+          }
+          Product.removeProductByName(name);
+          System.out.println("Produkt " + name + " byl odstranen.");
+          break;
         case 0:
           return;
         default:

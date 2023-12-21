@@ -15,8 +15,8 @@ public class Printers {
 
     public void printProducts () {
         System.out.println("\n\n====================================");
-        System.out.println("\nPrehled vsechn produktu");
-        if (Product.productsList == null) {
+        System.out.println("\nPrehled vsech produktu");
+        if (Product.productsList == null || Product.productsList.length == 0) {
             System.out.println("Zadne produkty nejsou vytvoreny.");
             System.out.println("\n====================================");
             return;

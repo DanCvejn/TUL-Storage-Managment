@@ -52,13 +52,17 @@ public class Product {
      */
     public void setPrice(int newPrice) {
         String text;
+        if (this.price == newPrice) {
+            System.out.println("Cena produktu " + this.name + " zustala stejna.");
+            return;
+        }
         if (this.price > newPrice) {
             text = "Cena produktu " + this.name + " se snizila z " + this.price + "Kc na ";
         } else {
             text = "Cena produktu " + this.name + " se zvysila z " + this.price + "Kc na ";
         }
         this.price = newPrice;
-        System.out.println("\n\n!!!\n" + text + this.price + "Kc\n!!!");
+        System.out.println(text + this.price);
     }
 
     public int getCount() {
@@ -70,13 +74,17 @@ public class Product {
      */
     public void setCount(int newCount) {
         String text;
+        if (this.count == newCount) {
+            System.out.println("Stav produktu " + this.name + " zustal stejny.");
+            return;
+        }
         if (this.count > newCount) {
             text = "Produktu " + this.name + " bylo prodano/vyskladneno " + (this.count - newCount) + ", novy stav je: ";
         } else {
             text = "Produkt " + this.name + " byl naskladnen o " + (newCount - this.count) + ", novy stav je: ";
         }
         this.count = newCount;
-        System.out.println("\n\n!!!\n" + text + this.count + "\n!!!");
+        System.out.println(text + this.count);
     }
 
     public boolean getStored () {
@@ -85,5 +93,26 @@ public class Product {
 
     public void setStored(boolean store) {
         this.stored = store;
+    }
+
+    public static Product getProductByName(String name) {
+        for (Product product : productsList) {
+            if (product.getName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public static void removeProductByName(String name) {
+        Product[] newProductsList = new Product[productsList.length - 1];
+        int i = 0;
+        for (Product product : productsList) {
+            if (!product.getName().equals(name)) {
+                newProductsList[i] = product;
+                i++;
+            }
+        }
+        productsList = newProductsList;
     }
 }

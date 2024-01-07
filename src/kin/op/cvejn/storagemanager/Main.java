@@ -14,5 +14,4 @@ public class Main {
         Menus menu = new Menus();
         menu.mainMenu();
     }
-
 }

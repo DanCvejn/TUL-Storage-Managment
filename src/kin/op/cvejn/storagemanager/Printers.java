@@ -5,6 +5,11 @@ package kin.op.cvejn.storagemanager;
  * @author Daniel Cvejn
  */
 public class Printers {
+    public void printOptionEnd () {
+        System.out.println("\nPro pokracovani stisknete ENTER.");
+        new UserInputs().getString();
+    }
+
     public void printHead () {
         System.out.println("====================================");
         System.out.println("|                                  |");
@@ -26,6 +31,7 @@ public class Printers {
             System.out.println("   - Cena: " + product.getPrice() + "Kc");
             System.out.println("   - Pocet kusu na sklade: " + product.getCount() + "ks");
         }
+        printOptionEnd();
         System.out.println("\n====================================");
     }
 
@@ -44,16 +50,26 @@ public class Printers {
             System.out.println(storage.getCoordinateY() + ". rada, " + storage.getCoordinateX() + ". sloupec");
             System.out.println(" - Vyuzito " + storedProductsLength + "/" + storage.getSize());
             System.out.println(" - Produkty:");
+            if (storage.storedProducts == null || storage.storedProducts.length == 0) {
+                System.out.println("   - Zadne produkty nejsou ulozeny.");
+                continue;
+            }
             for (Product storedProduct : storage.storedProducts) {
                 System.out.println("   - " + storedProduct.getName());
             }
         }
         System.out.println("\nNeulozene produkty");
+        if (Product.productsList == null || Product.productsList.length == 0) {
+            System.out.println("Zadne produkty nejsou vytvoreny.");
+            System.out.println("\n====================================");
+            return;
+        }
         for (Product product : Product.productsList) {
             if (!product.getStored()) {
                 System.out.println(product.getName());
             }
         }
+        printOptionEnd();
         System.out.println("\n====================================");
     }
 
@@ -64,7 +80,18 @@ public class Printers {
             return;
         }
         for (int i = 0; i < Product.productsList.length; i++) {
-            System.out.println(i + 1 + ". " + Product.productsList[i].getName());
+            System.out.println(i + 1 + ". " + Product.productsList[i].getName() + " - " + (Product.productsList[i].getStored() ? "ulozen" : "neulozen"));
+        }
+    }
+
+    public void printStorageList () {
+        System.out.println("\nSeznam skladovych protor");
+        if (Product.productsList == null) {
+            System.out.println("Zadne prostory nejsou vytvoreny.");
+            return;
+        }
+        for (int i = 0; i < Storage.storagesList.length; i++) {
+            System.out.println(i + 1 + ". " + Storage.storagesList[i].getCoordinateY() + ". rada, " + Storage.storagesList[i].getCoordinateX() + ". sloupec");
         }
     }
 
@@ -73,8 +100,9 @@ public class Printers {
         System.out.println("\nHlavni menu");
         System.out.println("1. Prehled produktu");
         System.out.println("2. Sprava produktu");
-        System.out.println("3. Prehled skladu");
+        System.out.println("3. Prehled skladovych prostoru");
         System.out.println("4. Sprava skladovych prostoru");
+        System.out.println("5. Vytvorit testovaci data");
         System.out.println("0. Ukoncit program");
         System.out.println("\n====================================");
     }
@@ -83,15 +111,20 @@ public class Printers {
         System.out.println("\n\n====================================");
         System.out.println("\nSprava produktu");
         System.out.println("1. Pridat produkt");
-        System.out.println("2. Zmenit produkt");
-        System.out.println("3. Smazat produkt");
+        System.out.println("2. Ulozit produkt do prostoru");
+        System.out.println("3. Zmenit produkt");
+        System.out.println("4. Smazat produkt");
         System.out.println("0. Zpet");
         System.out.println("\n====================================");
     }
 
-    public void printProductOverviewMenu () {
-        printProductsList();
-        System.out.println("0. Zrusit");
+    public void printStorageManagementMenu () {
+        System.out.println("\n\n====================================");
+        System.out.println("\nSprava skladovych prostoru");
+        System.out.println("1. Pridat prostor");
+        System.out.println("2. Zmenit prostor");
+        System.out.println("3. Smazat prostor");
+        System.out.println("0. Zpet");
         System.out.println("\n====================================");
     }
 }

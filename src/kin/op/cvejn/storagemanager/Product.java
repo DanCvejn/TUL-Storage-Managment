@@ -20,6 +20,7 @@ public class Product {
         this.name = name;
         this.price = price;
         this.count = count;
+        this.stored = false;
 
         if (productsList == null) {
             productsList = new Product[1];
@@ -91,10 +92,16 @@ public class Product {
         return this.stored;
     }
 
+    /**
+     * @param store Změna stavu uložení produktu
+     */
     public void setStored(boolean store) {
         this.stored = store;
     }
 
+    /**
+     * @param name Název produktu, který chceme získat
+     */
     public static Product getProductByName(String name) {
         for (Product product : productsList) {
             if (product.getName().equals(name)) {
@@ -104,6 +111,9 @@ public class Product {
         return null;
     }
 
+    /**
+     * @param name Název produktu, který chceme odstranit
+     */
     public static void removeProductByName(String name) {
         Product[] newProductsList = new Product[productsList.length - 1];
         int i = 0;

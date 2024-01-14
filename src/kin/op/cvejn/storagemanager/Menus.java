@@ -165,7 +165,7 @@ public class Menus {
           printers.printOptionEnd();
           break;
         case 2:
-          System.out.println("\nUpravit prostor:");
+          System.out.println("\nSpravovat ulozene produkty v prostoru");
           System.out.println("rada: Y, sloupec: X");
           printers.printStorageList();
           if (Storage.storagesList == null) {
@@ -182,13 +182,44 @@ public class Menus {
             printers.printOptionEnd();
             break;
           }
+          printers.printStoredProductsList(storage);
+          System.out.println("Zadejte nazev produktu: ");
+          String name = userInputs.getString();
+          Product product = Product.getProductByName(name);
+          if (product == null) {
+            System.out.println("Produkt s nazvem " + name + " nebyl nalezen.");
+            printers.printOptionEnd();
+            break;
+          }
+          storage.unstoreProduct(product);
+          System.out.println("Produkt " + name + " byl odstranen z prostoru " + x + ". sloupec, " + y + ". rada.");
+          printers.printOptionEnd();
+          break;
+        case 3:
+          System.out.println("\nUpravit prostor:");
+          System.out.println("rada: Y, sloupec: X");
+          printers.printStorageList();
+          if (Storage.storagesList == null) {
+            printers.printOptionEnd();
+            break;
+          }
+          System.out.println("Zadejte souradnici X: ");
+          x = userInputs.getNumber();
+          System.out.println("Zadejte souradnici Y: ");
+          y = userInputs.getNumber();
+          storage = Storage.getStorageByCoordinates(x, y);
+          if (storage == null) {
+            System.out.println("Prostor na souradnicich " + x + ", " + y + " nebyl nalezen.");
+            printers.printOptionEnd();
+            break;
+          }
           System.out.println("Zadejte novou velikost prostoru: ");
           size = userInputs.getNumber();
           storage.setSize(size);
           System.out.println("Prostor " + x + ". sloupec, " + y + ". rada byl upraven.");
           printers.printOptionEnd();
           break;
-        case 3:
+        case 4:
           System.out.println("\nOdstranit prostor:");
           System.out.println("rada: Y, sloupec: X");
           printers.printStorageList();

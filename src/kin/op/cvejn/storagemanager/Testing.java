@@ -9,6 +9,10 @@ import java.util.Random;
 
 public class Testing {
   public void createTestData() {
+        // Smazání všech produktů a skladů
+        Product.productsList = null;
+        Storage.storagesList = null;
+
         Random rand = new Random();
 
         // Vytvoření produktů

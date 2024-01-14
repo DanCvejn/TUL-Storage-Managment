@@ -91,7 +91,18 @@ public class Printers {
             return;
         }
         for (int i = 0; i < Storage.storagesList.length; i++) {
-            System.out.println(i + 1 + ". " + Storage.storagesList[i].getCoordinateY() + ". rada, " + Storage.storagesList[i].getCoordinateX() + ". sloupec");
+            System.out.println(i + 1 + ". " + Storage.storagesList[i].getCoordinateY() + ". rada, " + Storage.storagesList[i].getCoordinateX() + ". sloupec - " + (Storage.storagesList[i].storedProducts == null ? 0 : Storage.storagesList[i].storedProducts.length) + "/" + Storage.storagesList[i].getSize());
+        }
+    }
+
+    public void printStoredProductsList (Storage storage) {
+        System.out.println("\nSeznam ulozenych produktu");
+        if (storage.storedProducts == null) {
+            System.out.println("Zadne produkty zde nejsou ulozeny.");
+            return;
+        }
+        for (int i = 0; i < storage.storedProducts.length; i++) {
+            System.out.println(i + 1 + ". " + storage.storedProducts[i].getName());
         }
     }
 
@@ -122,8 +133,9 @@ public class Printers {
         System.out.println("\n\n====================================");
         System.out.println("\nSprava skladovych prostoru");
         System.out.println("1. Pridat prostor");
-        System.out.println("2. Zmenit prostor");
-        System.out.println("3. Smazat prostor");
+        System.out.println("2. Spravovat ulozene produkty v prostoru");
+        System.out.println("3. Zmenit prostor");
+        System.out.println("4. Smazat prostor");
         System.out.println("0. Zpet");
         System.out.println("\n====================================");
     }

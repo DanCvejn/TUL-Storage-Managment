@@ -112,6 +112,7 @@ public class Storage {
                 }
             }
         }
+        product.setStored(false);
         this.storedProducts = Arrays.stream(newStoredProducts).filter(p -> p != null).toArray(Product[]::new);
     }
 
@@ -142,5 +143,25 @@ public class Storage {
             }
         }
         storagesList = newStorageList;
+    }
+
+    public static int getHighestCoordinateX() {
+        int highestCoordinateX = 0;
+        for (Storage storage : storagesList) {
+            if (storage.getCoordinateX() > highestCoordinateX) {
+                highestCoordinateX = storage.getCoordinateX();
+            }
+        }
+        return highestCoordinateX;
+    }
+
+    public static int getHighestCoordinateY() {
+        int highestCoordinateY = 0;
+        for (Storage storage : storagesList) {
+            if (storage.getCoordinateY() > highestCoordinateY) {
+                highestCoordinateY = storage.getCoordinateY();
+            }
+        }
+        return highestCoordinateY;
     }
 }

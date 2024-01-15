@@ -3,12 +3,15 @@ package kin.op.cvejn.storagemanager;
 import java.util.Random;
 
 /**
- *
+ * Tato třída slouží k vytvoření testovacích dat.
  * @author Daniel Cvejn
  */
-
 public class Testing {
-  public void createTestData() {
+
+    /**
+     * Vytvoří testovací data. S daty se dále dá pracovat v programu.
+     */
+    public void createTestData() {
         // Smazání všech produktů a skladů
         Product.productsList = null;
         Storage.storagesList = null;

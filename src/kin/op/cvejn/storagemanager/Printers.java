@@ -1,15 +1,22 @@
 package kin.op.cvejn.storagemanager;
 
 /**
- *
+ * Tato třída slouží k výpisu textů a menu do konzole.
  * @author Daniel Cvejn
  */
 public class Printers {
+
+    /**
+     * Ukončí předchozí akci a po stisknutí ENTER pokračuje.
+     */
     public void printOptionEnd () {
         System.out.println("\nPro pokracovani stisknete ENTER.");
         new UserInputs().getString();
     }
 
+    /**
+     * Vypíše hlavičku programu.
+     */
     public void printHead () {
         System.out.println("====================================");
         System.out.println("|                                  |");
@@ -18,6 +25,9 @@ public class Printers {
         System.out.println("====================================");
     }
 
+    /**
+     * Vypíše přehled produktů.
+     */
     public void printProducts () {
         System.out.println("\n\n====================================");
         System.out.println("\nPrehled vsech produktu");
@@ -35,6 +45,9 @@ public class Printers {
         System.out.println("\n====================================");
     }
 
+    /**
+     * Vypíše přehled skladů.
+     */
     public void printStorage () {
         System.out.println("\n\n====================================");
         System.out.println("\nPrehled skladu");
@@ -73,6 +86,9 @@ public class Printers {
         System.out.println("\n====================================");
     }
 
+    /**
+     * Vypíše seznam produktů.
+     */
     public void printProductsList () {
         System.out.println("\nSeznam produktu");
         if (Product.productsList == null) {
@@ -84,6 +100,9 @@ public class Printers {
         }
     }
 
+    /**
+     * Vypíše seznam skladů.
+     */
     public void printStorageList () {
         System.out.println("\nSeznam skladovych protor");
         if (Product.productsList == null) {
@@ -95,6 +114,9 @@ public class Printers {
         }
     }
 
+    /**
+     * Vypíše seznam produktů uložených v daném skladu.
+     */
     public void printStoredProductsList (Storage storage) {
         System.out.println("\nSeznam ulozenych produktu");
         if (storage.storedProducts == null) {
@@ -106,6 +128,9 @@ public class Printers {
         }
     }
 
+    /**
+     * Vypíše hlavní menu.
+     */
     public void printMainMenu () {
         System.out.println("\n\n====================================");
         System.out.println("\nHlavni menu");
@@ -118,6 +143,9 @@ public class Printers {
         System.out.println("\n====================================");
     }
 
+    /**
+     * Vypíše menu pro správu produktů.
+     */
     public void printProductsManagementMenu () {
         System.out.println("\n\n====================================");
         System.out.println("\nSprava produktu");
@@ -129,6 +157,9 @@ public class Printers {
         System.out.println("\n====================================");
     }
 
+    /**
+     * Vypíše menu pro správu skladů.
+     */
     public void printStorageManagementMenu () {
         System.out.println("\n\n====================================");
         System.out.println("\nSprava skladovych prostoru");

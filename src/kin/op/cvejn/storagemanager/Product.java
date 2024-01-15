@@ -1,10 +1,11 @@
 package kin.op.cvejn.storagemanager;
 
 /**
- *
+ * Třída na vytváření a práci s produkty
  * @author Daniel Cvejn
  */
 public class Product {
+
     public String name;
     public int price;
     public int count;
@@ -12,6 +13,7 @@ public class Product {
     public static Product[] productsList;
 
     /**
+     * Konstruktor produktů
      * @param name Název produktu
      * @param price Cena produktu
      * @param count Celkový počet kusů produktu
@@ -33,26 +35,40 @@ public class Product {
         }
     }
 
+    /**
+     * Metoda pro vrácení názvu produktu
+     * @return Název produktu
+     */
     public String getName() {
         return this.name;
     }
 
     /**
+     * Metoda pro změnu názvu produktu
      * @param newName Nový název produktu
      */
     public void setName(String newName) {
         this.name = newName;
     }
 
+    /**
+     * Metoda pro vrácení ceny produktu
+     * @return Cena produktu
+     */
     public int getPrice() {
         return this.price;
     }
 
     /**
+     * Metoda pro změnu ceny produktu, cena musí být větší než 0
      * @param newPrice Nová cena produktu
      */
     public void setPrice(int newPrice) {
         String text;
+        if (newPrice < 1) {
+            System.out.println("Cena produktu " + this.name + " musi byt vetsi nez 0.");
+            return;
+        }
         if (this.price == newPrice) {
             System.out.println("Cena produktu " + this.name + " zustala stejna.");
             return;
@@ -66,15 +82,24 @@ public class Product {
         System.out.println(text + this.price);
     }
 
+    /**
+     * Metoda pro vrácení počtu kusů produktu na skladě
+     * @return Počet kusů produktu na skladě
+     */
     public int getCount() {
         return this.count;
     }
 
     /**
+     * Metoda pro změnu počtu kusů produktu na skladě, počet kusů musí být větší nebo rovno 0
      * @param newCount Nový stav produktu na skladě
      */
     public void setCount(int newCount) {
         String text;
+        if (newCount < 0) {
+            System.out.println("Pocet kusu produktu " + this.name + " musi byt vetsi nebo roven 0.");
+            return;
+        }
         if (this.count == newCount) {
             System.out.println("Stav produktu " + this.name + " zustal stejny.");
             return;
@@ -88,7 +113,11 @@ public class Product {
         System.out.println(text + this.count);
     }
 
-    public boolean getStored () {
+    /**
+     * Metoda pro vrácení stavu uložení produktu
+     * @return Stav uložení produktu
+     */
+    public boolean getStored() {
         return this.stored;
     }
 
@@ -100,7 +129,9 @@ public class Product {
     }
 
     /**
+     * Vrací produkt podle názvu
      * @param name Název produktu, který chceme získat
+     * @return Produkt podle názvu
      */
     public static Product getProductByName(String name) {
         for (Product product : productsList) {
@@ -112,6 +143,7 @@ public class Product {
     }
 
     /**
+     * Odstraní produkt podle názvu
      * @param name Název produktu, který chceme odstranit
      */
     public static void removeProductByName(String name) {

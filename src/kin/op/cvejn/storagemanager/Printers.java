@@ -105,7 +105,7 @@ public class Printers {
      */
     public void printStorageList () {
         System.out.println("\nSeznam skladovych protor");
-        if (Product.productsList == null) {
+        if (Storage.storagesList == null) {
             System.out.println("Zadne prostory nejsou vytvoreny.");
             return;
         }

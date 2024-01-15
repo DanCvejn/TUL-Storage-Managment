@@ -97,6 +97,11 @@ public class Menus {
                         printers.printOptionEnd();
                         break;
                     }
+                    if (storage.storedProducts.length == storage.getSize()) {
+                        System.out.println("Prostor " + x + ". sloupec, " + y + ". rada je plny.");
+                        printers.printOptionEnd();
+                        break;
+                    }
                     storage.storeProduct(product);
                     printers.printOptionEnd();
                     break;

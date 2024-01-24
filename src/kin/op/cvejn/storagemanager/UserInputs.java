@@ -16,15 +16,20 @@ public class UserInputs {
      * @return Číslo od uživatele
      */
     public int getNumber() {
-        try {
-            int number = sc.nextInt();
-            sc.nextLine();
-            return number;
-        } catch (InputMismatchException e) {
-            System.out.println("Zadejte prosim cislo.");
-            sc.next();
-            return getNumber();
+        boolean isNumber = false;
+        int number = 0;
+        while (!isNumber) {
+            try {
+                number = sc.nextInt();
+                sc.nextLine();
+                isNumber = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Zadejte prosim cislo.");
+                sc.next();
+                isNumber = false;
+            }
         }
+        return number;
     }
 
     /**
@@ -32,13 +37,18 @@ public class UserInputs {
      * @return Text od uživatele
      */
     public String getString() {
-        try {
-            String string = sc.nextLine();
-            return string;
-        } catch (InputMismatchException e) {
-            System.out.println("Zadejte prosim retezec.");
-            sc.next();
-            return getString();
+        boolean isString = false;
+        String string = "";
+        while (!isString) {
+            try {
+                string = sc.nextLine();
+                isString = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Zadejte prosim retezec.");
+                sc.next();
+                isString = false;
+            }
         }
+        return string;
     }
 }

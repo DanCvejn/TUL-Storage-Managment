@@ -24,7 +24,6 @@ public class Testing {
         Product mrkev = new Product("Mrkev", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         Product okurka = new Product("Okurka", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         Product rajce = new Product("Rajce", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
-        Product hruska = new Product("Hruska", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         Product tempProduct = new Product("Meloun", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         tempProduct = new Product("Brokolice", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         tempProduct = new Product("Celer", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
@@ -34,16 +33,15 @@ public class Testing {
         tempProduct = new Product("Brambora", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         tempProduct = new Product("Cibule", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
         tempProduct = new Product("Cesnek", rand.nextInt(46) + 5, rand.nextInt(651) + 50);
-        tempProduct = hruska;
+        tempProduct = new Product("Hruska", rand.nextInt(46) + 5, rand.nextInt(651) + 50);;
 
         // Vytvoření skladů
         Storage storage1 = new Storage(10, 1, 1);
         Storage storage2 = new Storage(5, 2, 1);
-        Storage storage3 = new Storage(5, 3, 1);
         Storage tempStorage = new Storage(10, 1, 2);
         tempStorage = new Storage(10, 2, 2);
         tempStorage = new Storage(7, 3, 2);
-        tempStorage = storage3;
+        tempStorage = new Storage(5, 3, 1);
 
         // Naplnění skladů produkty
         storage1.storeProduct(jablko);

@@ -8,6 +8,7 @@ import java.util.Arrays;
  */
 public class Storage {
 
+    public int id;
     public int size;
     public Product[] storedProducts;
     public int coordinateX;
@@ -28,12 +29,22 @@ public class Storage {
         if (storagesList == null) {
             storagesList = new Storage[1];
             storagesList[0] = this;
+            this.id = 1;
         } else {
             Storage[] newStoragesList = new Storage[storagesList.length + 1];
+            this.id = storagesList[storagesList.length - 1].id + 1;
             System.arraycopy(storagesList, 0, newStoragesList, 0, storagesList.length);
             newStoragesList[storagesList.length] = this;
             storagesList = newStoragesList;
         }
+    }
+
+    /**
+     * Metoda pro získání id prostoru
+     * @return Id prostoru
+     */
+    public int getId() {
+        return id;
     }
 
     /**
@@ -121,7 +132,7 @@ public class Storage {
             this.storedProducts = new Product[1];
             this.storedProducts[0] = product;
             product.setStored(true);
-            System.out.println("Produkt " + product.getName() + " ulozen do tohoto prostoru (" + this.coordinateX + ", " + this.coordinateY + ")");
+            System.out.println("Produkt " + product.getName() + " ulozen do tohoto prostoru č." + this.id);
         } else if (this.storedProducts.length >= this.size) {
             System.out.println("Tento prostor je jiz plny");
         } else {
@@ -130,7 +141,7 @@ public class Storage {
             newStoredProducts[this.storedProducts.length] = product;
             this.storedProducts = newStoredProducts;
             product.setStored(true);
-            System.out.println("Produkt " + product.getName() + " ulozen do tohoto prostoru (" + this.coordinateX + ", " + this.coordinateY + ")");
+            System.out.println("Produkt " + product.getName() + " ulozen do tohoto prostoru č." + this.id);
         }
     }
 
@@ -160,8 +171,8 @@ public class Storage {
 
     /**
      * Metoda na získání prostoru podle souřadnic
-     * @param x Souřadnice x úložného prostoru, který chceme získat
-     * @param y Souřadnice y úložného prostoru, který chceme získat
+     * @param x Souřadnice sloupce
+     * @param y Souřadnice řádku
      * @return Vrací prostor podle souřadnic
      */
     public static Storage getStorageByCoordinates(int x, int y) {
@@ -174,15 +185,32 @@ public class Storage {
     }
 
     /**
-     * Metoda na odstranění prostoru podle souřadnic
-     * @param x Souřadnice x úložného prostoru, který chceme smazat
-     * @param y Souřadnice y úložného prostoru, který chceme smazat
+     * Metoda na získání prostoru podle id
+     * @param id Id prostoru
+     * @return Vrací prostor podle souřadnic
      */
-    public static void removeStorageByCoordinates(int x, int y) {
+    public static Storage getStorageById(int id) {
+        for (Storage storage : storagesList) {
+            if (storage.getId() == id) {
+                return storage;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Metoda na odstranění prostoru podle souřadnic
+     * @param id Id prostoru, který chceme odstranit
+     */
+    public static void removeStorageById(int id) {
+        Storage storage = getStorageById(id);
+        for (Product product : storage.storedProducts) {
+            product.setStored(false);
+        }
         Storage[] newStorageList = new Storage[storagesList.length - 1];
         int i = 0;
-        for (Storage storage : storagesList) {
-            if (storage.getCoordinateX() != x && storage.getCoordinateY() != y) {
+        for (Storage storageTmp : storagesList) {
+            if (storageTmp.getId() != id) {
                 newStorageList[i] = storage;
                 i++;
             }

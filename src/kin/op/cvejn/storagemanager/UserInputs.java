@@ -25,7 +25,7 @@ public class UserInputs {
                 isNumber = true;
             } catch (InputMismatchException e) {
                 System.out.println("Zadejte prosim cislo.");
-                sc.next();
+                sc.nextLine();
                 isNumber = false;
             }
         }
@@ -45,7 +45,7 @@ public class UserInputs {
                 isString = true;
             } catch (InputMismatchException e) {
                 System.out.println("Zadejte prosim retezec.");
-                sc.next();
+                sc.nextLine();
                 isString = false;
             }
         }

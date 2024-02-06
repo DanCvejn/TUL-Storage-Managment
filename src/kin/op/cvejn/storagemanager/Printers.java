@@ -60,7 +60,7 @@ public class Printers {
         for (Storage storage : Storage.storagesList) {
             if (storage.storedProducts == null) storedProductsLength = 0;
             else storedProductsLength = storage.storedProducts.length;
-            System.out.println(storage.getCoordinateY() + ". rada, " + storage.getCoordinateX() + ". sloupec");
+            System.out.println("ID: " + storage.getId() + " - " + storage.getCoordinateY() + ". rada, " + storage.getCoordinateX() + ". sloupec");
             System.out.println(" - Vyuzito " + storedProductsLength + "/" + storage.getSize());
             System.out.println(" - Produkty:");
             if (storage.storedProducts == null || storage.storedProducts.length == 0) {
@@ -110,7 +110,7 @@ public class Printers {
             return;
         }
         for (int i = 0; i < Storage.storagesList.length; i++) {
-            System.out.println(i + 1 + ". " + Storage.storagesList[i].getCoordinateY() + ". rada, " + Storage.storagesList[i].getCoordinateX() + ". sloupec - " + (Storage.storagesList[i].storedProducts == null ? 0 : Storage.storagesList[i].storedProducts.length) + "/" + Storage.storagesList[i].getSize());
+            System.out.println(Storage.storagesList[i].getId() + ". " + Storage.storagesList[i].getCoordinateY() + ". rada, " + Storage.storagesList[i].getCoordinateX() + ". sloupec - " + (Storage.storagesList[i].storedProducts == null ? 0 : Storage.storagesList[i].storedProducts.length) + "/" + Storage.storagesList[i].getSize());
         }
     }
 

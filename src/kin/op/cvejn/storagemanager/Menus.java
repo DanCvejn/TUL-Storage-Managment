@@ -81,24 +81,21 @@ public class Menus {
                         printers.printOptionEnd();
                         break;
                     }
-                    System.out.println("Zadejte skladovaci prostor (rada: Y, sloupec: X):");
                     printers.printStorageList();
                     if (Storage.storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
-                    System.out.println("Zadejte souradnici X: ");
-                    int x = userInputs.getNumber();
-                    System.out.println("Zadejte souradnici Y: ");
-                    int y = userInputs.getNumber();
-                    Storage storage = Storage.getStorageByCoordinates(x, y);
+                    System.out.println("Zadejte id prostoru: ");
+                    int id = userInputs.getNumber();
+                    Storage storage = Storage.getStorageById(id);
                     if (storage == null) {
-                        System.out.println("Prostor na souradnicich " + x + ", " + y + " nebyl nalezen.");
+                        System.out.println("Prostor s timto id nebyl nalezen.");
                         printers.printOptionEnd();
                         break;
                     }
                     if (storage.storedProducts.length == storage.getSize()) {
-                        System.out.println("Prostor " + x + ". sloupec, " + y + ". rada je plny.");
+                        System.out.println("Prostor s timto id je plny.");
                         printers.printOptionEnd();
                         break;
                     }
@@ -181,19 +178,16 @@ public class Menus {
                     break;
                 case 2:
                     System.out.println("\nSpravovat ulozene produkty v prostoru");
-                    System.out.println("rada: Y, sloupec: X");
                     printers.printStorageList();
                     if (Storage.storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
-                    System.out.println("Zadejte souradnici X: ");
-                    x = userInputs.getNumber();
-                    System.out.println("Zadejte souradnici Y: ");
-                    y = userInputs.getNumber();
-                    Storage storage = Storage.getStorageByCoordinates(x, y);
+                    System.out.println("Zadejte id prostoru: ");
+                    int id = userInputs.getNumber();
+                    Storage storage = Storage.getStorageById(id);
                     if (storage == null) {
-                        System.out.println("Prostor na souradnicich " + x + ", " + y + " nebyl nalezen.");
+                        System.out.println("Prostor s timto id nebyl nalezen.");
                         printers.printOptionEnd();
                         break;
                     }
@@ -207,53 +201,47 @@ public class Menus {
                         break;
                     }
                     storage.unstoreProduct(product);
-                    System.out.println("Produkt " + name + " byl odstranen z prostoru " + x + ". sloupec, " + y + ". rada.");
+                    System.out.println("Produkt " + name + " byl odstranen z prostoru s id " + id);
                     printers.printOptionEnd();
                     break;
                 case 3:
                     System.out.println("\nUpravit prostor:");
-                    System.out.println("rada: Y, sloupec: X");
                     printers.printStorageList();
                     if (Storage.storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
-                    System.out.println("Zadejte souradnici X: ");
-                    x = userInputs.getNumber();
-                    System.out.println("Zadejte souradnici Y: ");
-                    y = userInputs.getNumber();
-                    storage = Storage.getStorageByCoordinates(x, y);
+                    System.out.println("Zadejte id prostoru: ");
+                    id = userInputs.getNumber();
+                    storage = Storage.getStorageById(id);
                     if (storage == null) {
-                        System.out.println("Prostor na souradnicich " + x + ", " + y + " nebyl nalezen.");
+                        System.out.println("Prostor s timto id nebyl nalezen.");
                         printers.printOptionEnd();
                         break;
                     }
                     System.out.println("Zadejte novou velikost prostoru: ");
                     size = userInputs.getNumber();
                     storage.setSize(size);
-                    System.out.println("Prostor " + x + ". sloupec, " + y + ". rada byl upraven.");
+                    System.out.println("Prostor s id " + id + " byl upraven.");
                     printers.printOptionEnd();
                     break;
                 case 4:
                     System.out.println("\nOdstranit prostor:");
-                    System.out.println("rada: Y, sloupec: X");
                     printers.printStorageList();
                     if (Storage.storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
-                    System.out.println("Zadejte souradnici X: ");
-                    x = userInputs.getNumber();
-                    System.out.println("Zadejte souradnici Y: ");
-                    y = userInputs.getNumber();
-                    storage = Storage.getStorageByCoordinates(x, y);
+                    System.out.println("Zadejte id prostoru: ");
+                    id = userInputs.getNumber();
+                    storage = Storage.getStorageById(id);
                     if (storage == null) {
-                        System.out.println("Prostor na souradnicich " + x + ", " + y + " nebyl nalezen.");
+                        System.out.println("Prostor s timto id nebyl nalezen.");
                         printers.printOptionEnd();
                         break;
                     }
-                    Storage.removeStorageByCoordinates(x, y);
-                    System.out.println("Prostor " + x + ". sloupec, " + y + ". rada byl odstranen.");
+                    Storage.removeStorageById(id);
+                    System.out.println("Prostor s id " + id + " byl odstranen.");
                     printers.printOptionEnd();
                     break;
                 case 0:

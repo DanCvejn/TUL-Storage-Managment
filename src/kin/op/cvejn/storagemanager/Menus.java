@@ -8,6 +8,8 @@ public class Menus {
 
     Printers printers = new Printers();
     UserInputs userInputs = new UserInputs();
+    Product[] productsList = Product.getProductList();
+    Storage[] storagesList = Storage.getStoragesList();
 
     /**
      * Vypíše hlavní menu a volá metody pro správu produktů a skladů.
@@ -69,7 +71,7 @@ public class Menus {
                 case 2:
                     System.out.println("\nUlozit produkt:");
                     printers.printProductsList();
-                    if (Product.productsList == null) {
+                    if (productsList == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -82,7 +84,7 @@ public class Menus {
                         break;
                     }
                     printers.printStorageList();
-                    if (Storage.storagesList == null) {
+                    if (storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -105,7 +107,7 @@ public class Menus {
                 case 3:
                     System.out.println("\nUpravit produkt:");
                     printers.printProductsList();
-                    if (Product.productsList == null) {
+                    if (productsList == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -129,7 +131,7 @@ public class Menus {
                 case 4:
                     System.out.println("\nOdstranit produkt:");
                     printers.printProductsList();
-                    if (Product.productsList == null) {
+                    if (productsList == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -179,7 +181,7 @@ public class Menus {
                 case 2:
                     System.out.println("\nSpravovat ulozene produkty v prostoru");
                     printers.printStorageList();
-                    if (Storage.storagesList == null) {
+                    if (storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -207,7 +209,7 @@ public class Menus {
                 case 3:
                     System.out.println("\nUpravit prostor:");
                     printers.printStorageList();
-                    if (Storage.storagesList == null) {
+                    if (storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -228,7 +230,7 @@ public class Menus {
                 case 4:
                     System.out.println("\nOdstranit prostor:");
                     printers.printStorageList();
-                    if (Storage.storagesList == null) {
+                    if (storagesList == null) {
                         printers.printOptionEnd();
                         break;
                     }

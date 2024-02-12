@@ -10,7 +10,7 @@ public class Product {
     public int price;
     public int count;
     public boolean stored;
-    public static Product[] productsList;
+    private static Product[] productsList;
 
     /**
      * Konstruktor produktů
@@ -33,6 +33,22 @@ public class Product {
             newProductsList[productsList.length] = this;
             productsList = newProductsList;
         }
+    }
+
+    /**
+     * Metoda pro získání seznamu všech produktů
+     * @return Seznam produktů
+     */
+    public static Product[] getProductList() {
+        return productsList;
+    }
+
+    /**
+     * Metoda pro změnu seznamu produktů
+     * @param newProductsList Nový seznam produktů
+     */
+    public static void setProductList(Product[] newProductsList) {
+        productsList = newProductsList;
     }
 
     /**

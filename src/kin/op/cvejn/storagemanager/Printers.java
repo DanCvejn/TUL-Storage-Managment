@@ -31,12 +31,12 @@ public class Printers {
     public void printProducts () {
         System.out.println("\n\n====================================");
         System.out.println("\nPrehled vsech produktu");
-        if (Product.productsList == null || Product.productsList.length == 0) {
+        if (Product.getProductList() == null || Product.getProductList().length == 0) {
             System.out.println("Zadne produkty nejsou vytvoreny.");
             System.out.println("\n====================================");
             return;
         }
-        for (Product product : Product.productsList) {
+        for (Product product : Product.getProductList()) {
             System.out.println(" - Produkt: " + product.getName());
             System.out.println("   - Cena: " + product.getPrice() + "Kc");
             System.out.println("   - Pocet kusu na sklade: " + product.getCount() + "ks");
@@ -51,13 +51,13 @@ public class Printers {
     public void printStorage () {
         System.out.println("\n\n====================================");
         System.out.println("\nPrehled skladu");
-        if (Storage.storagesList == null) {
+        if (Storage.getStoragesList() == null || Storage.getStoragesList().length == 0) {
             System.out.println("Zadne skladovaci prostory nejsou vytvoreny.");
             System.out.println("\n====================================");
             return;
         }
         int storedProductsLength;
-        for (Storage storage : Storage.storagesList) {
+        for (Storage storage : Storage.getStoragesList()) {
             if (storage.storedProducts == null) storedProductsLength = 0;
             else storedProductsLength = storage.storedProducts.length;
             System.out.println("ID: " + storage.getId() + " - " + storage.getCoordinateY() + ". rada, " + storage.getCoordinateX() + ". sloupec");
@@ -72,12 +72,12 @@ public class Printers {
             }
         }
         System.out.println("\nNeulozene produkty");
-        if (Product.productsList == null || Product.productsList.length == 0) {
+        if (Product.getProductList() == null || Product.getProductList().length == 0) {
             System.out.println("Zadne produkty nejsou vytvoreny.");
             System.out.println("\n====================================");
             return;
         }
-        for (Product product : Product.productsList) {
+        for (Product product : Product.getProductList()) {
             if (!product.getStored()) {
                 System.out.println(product.getName());
             }
@@ -91,12 +91,13 @@ public class Printers {
      */
     public void printProductsList () {
         System.out.println("\nSeznam produktu");
-        if (Product.productsList == null) {
+        Product[] productList = Product.getProductList();
+        if (productList == null || productList.length == 0) {
             System.out.println("Zadne produkty nejsou vytvoreny.");
             return;
         }
-        for (int i = 0; i < Product.productsList.length; i++) {
-            System.out.println(i + 1 + ". " + Product.productsList[i].getName() + " - " + (Product.productsList[i].getStored() ? "ulozen" : "neulozen"));
+        for (int i = 0; i < productList.length; i++) {
+            System.out.println(i + 1 + ". " + productList[i].getName() + " - " + (productList[i].getStored() ? "ulozen" : "neulozen"));
         }
     }
 
@@ -105,12 +106,13 @@ public class Printers {
      */
     public void printStorageList () {
         System.out.println("\nSeznam skladovych protor");
-        if (Storage.storagesList == null) {
+        Storage[] storagesList = Storage.getStoragesList();
+        if (storagesList == null) {
             System.out.println("Zadne prostory nejsou vytvoreny.");
             return;
         }
-        for (int i = 0; i < Storage.storagesList.length; i++) {
-            System.out.println(Storage.storagesList[i].getId() + ". " + Storage.storagesList[i].getCoordinateY() + ". rada, " + Storage.storagesList[i].getCoordinateX() + ". sloupec - " + (Storage.storagesList[i].storedProducts == null ? 0 : Storage.storagesList[i].storedProducts.length) + "/" + Storage.storagesList[i].getSize());
+        for (int i = 0; i < storagesList.length; i++) {
+            System.out.println(storagesList[i].getId() + ". " + storagesList[i].getCoordinateY() + ". rada, " + storagesList[i].getCoordinateX() + ". sloupec - " + (storagesList[i].storedProducts == null ? 0 : storagesList[i].storedProducts.length) + "/" + storagesList[i].getSize());
         }
     }
 

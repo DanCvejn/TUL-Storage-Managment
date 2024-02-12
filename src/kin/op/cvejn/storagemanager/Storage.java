@@ -13,7 +13,7 @@ public class Storage {
     public Product[] storedProducts;
     public int coordinateX;
     public int coordinateY;
-    public static Storage[] storagesList;
+    private static Storage[] storagesList;
 
     /**
      * @param size Velikost úložného prostoru
@@ -37,6 +37,22 @@ public class Storage {
             newStoragesList[storagesList.length] = this;
             storagesList = newStoragesList;
         }
+    }
+
+    /**
+     * Metoda pro získání seznamu všech skladovacích prostorů
+     * @return Seznam prostorů
+     */
+    public static Storage[] getStoragesList() {
+        return storagesList;
+    }
+
+    /**
+     * Metoda pro změnu seznamu prostorů
+     * @param newStoragesList Nový seznam prostorů
+     */
+    public static void setStoragesList(Storage[] newStoragesList) {
+        storagesList = newStoragesList;
     }
 
     /**

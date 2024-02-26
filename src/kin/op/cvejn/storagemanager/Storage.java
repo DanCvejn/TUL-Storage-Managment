@@ -220,18 +220,20 @@ public class Storage {
      */
     public static void removeStorageById(int id) {
         Storage storage = getStorageById(id);
-        for (Product product : storage.storedProducts) {
-            product.setStored(false);
+        if (storage.storedProducts != null) {
+            for (Product product : storage.storedProducts) {
+                product.setStored(false);
+            }
         }
-        Storage[] newStorageList = new Storage[storagesList.length - 1];
+        Storage[] newStorageList = new Storage[Storage.getStoragesList().length - 1];
         int i = 0;
-        for (Storage storageTmp : storagesList) {
+        for (Storage storageTmp : Storage.getStoragesList()) {
             if (storageTmp.getId() != id) {
-                newStorageList[i] = storage;
+                newStorageList[i] = storageTmp;
                 i++;
             }
         }
-        storagesList = newStorageList;
+        Storage.setStoragesList(newStorageList);
     }
 
     /**

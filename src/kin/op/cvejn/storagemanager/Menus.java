@@ -71,7 +71,7 @@ public class Menus {
                 case 2:
                     System.out.println("\nUlozit produkt:");
                     printers.printProductsList();
-                    if (productsList == null) {
+                    if (Product.getProductList() == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -84,7 +84,7 @@ public class Menus {
                         break;
                     }
                     printers.printStorageList();
-                    if (storagesList == null) {
+                    if (Storage.getStoragesList() == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -107,7 +107,7 @@ public class Menus {
                 case 3:
                     System.out.println("\nUpravit produkt:");
                     printers.printProductsList();
-                    if (productsList == null) {
+                    if (Product.getProductList() == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -119,6 +119,7 @@ public class Menus {
                         printers.printOptionEnd();
                         break;
                     }
+                    System.out.println("Vybrany produkt: " + product.getName() + ", cena: " + product.getPrice() + "Kc, pocet kusu: " + product.getCount());
                     System.out.println("Zadejte novou cenu produktu: ");
                     price = userInputs.getNumber();
                     System.out.println("Zadejte novy pocet kusu produktu: ");
@@ -131,7 +132,7 @@ public class Menus {
                 case 4:
                     System.out.println("\nOdstranit produkt:");
                     printers.printProductsList();
-                    if (productsList == null) {
+                    if (Product.getProductList() == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -181,7 +182,7 @@ public class Menus {
                 case 2:
                     System.out.println("\nSpravovat ulozene produkty v prostoru");
                     printers.printStorageList();
-                    if (storagesList == null) {
+                    if (Storage.getStoragesList() == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -194,7 +195,7 @@ public class Menus {
                         break;
                     }
                     printers.printStoredProductsList(storage);
-                    System.out.println("Zadejte nazev produktu: ");
+                    System.out.println("Zadejte nazev produktu, ktery ma byt odstranen z prostoru: ");
                     String name = userInputs.getString();
                     Product product = Product.getProductByName(name);
                     if (product == null) {
@@ -209,7 +210,7 @@ public class Menus {
                 case 3:
                     System.out.println("\nUpravit prostor:");
                     printers.printStorageList();
-                    if (storagesList == null) {
+                    if (Storage.getStoragesList() == null) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -221,6 +222,7 @@ public class Menus {
                         printers.printOptionEnd();
                         break;
                     }
+                    System.out.println("Vybrany prostor: " + storage.getCoordinateX() + ". sloupec, " + storage.getCoordinateY() + ". rada, velikost: " + storage.getSize());
                     System.out.println("Zadejte novou velikost prostoru: ");
                     size = userInputs.getNumber();
                     storage.setSize(size);
@@ -230,7 +232,7 @@ public class Menus {
                 case 4:
                     System.out.println("\nOdstranit prostor:");
                     printers.printStorageList();
-                    if (storagesList == null) {
+                    if (Storage.getStoragesList() == null) {
                         printers.printOptionEnd();
                         break;
                     }

@@ -96,7 +96,7 @@ public class Menus {
                         printers.printOptionEnd();
                         break;
                     }
-                    if (storage.storedProducts.length == storage.getSize()) {
+                    if (storage.storedProducts != null && storage.storedProducts.length == storage.getSize()) {
                         System.out.println("Prostor s timto id je plny.");
                         printers.printOptionEnd();
                         break;
@@ -132,7 +132,7 @@ public class Menus {
                 case 4:
                     System.out.println("\nOdstranit produkt:");
                     printers.printProductsList();
-                    if (Product.getProductList() == null) {
+                    if (Product.getProductList() == null || Product.getProductList().length == 0) {
                         printers.printOptionEnd();
                         break;
                     }
@@ -195,6 +195,10 @@ public class Menus {
                         break;
                     }
                     printers.printStoredProductsList(storage);
+                    if (storage.storedProducts == null || storage.storedProducts.length == 0) {
+                        printers.printOptionEnd();
+                        break;
+                    }
                     System.out.println("Zadejte nazev produktu, ktery ma byt odstranen z prostoru: ");
                     String name = userInputs.getString();
                     Product product = Product.getProductByName(name);
@@ -232,7 +236,7 @@ public class Menus {
                 case 4:
                     System.out.println("\nOdstranit prostor:");
                     printers.printStorageList();
-                    if (Storage.getStoragesList() == null) {
+                    if (Storage.getStoragesList() == null || Storage.getStoragesList().length == 0) {
                         printers.printOptionEnd();
                         break;
                     }

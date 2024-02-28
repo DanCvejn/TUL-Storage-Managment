@@ -235,32 +235,4 @@ public class Storage {
         }
         Storage.setStoragesList(newStorageList);
     }
-
-    /**
-     * Metoda na získání nejvyšší souřadnice sloupce (X)
-     * @return Nejvyšší souřadnice sloupce (X)
-     */
-    public static int getHighestCoordinateX() {
-        int highestCoordinateX = 0;
-        for (Storage storage : storagesList) {
-            if (storage.getCoordinateX() > highestCoordinateX) {
-                highestCoordinateX = storage.getCoordinateX();
-            }
-        }
-        return highestCoordinateX;
-    }
-
-    /**
-     * Metoda na získání nejvyšší souřadnice řádku (Y)
-     * @return Nejvyšší souřadnice řádku (Y)
-     */
-    public static int getHighestCoordinateY() {
-        int highestCoordinateY = 0;
-        for (Storage storage : storagesList) {
-            if (storage.getCoordinateY() > highestCoordinateY) {
-                highestCoordinateY = storage.getCoordinateY();
-            }
-        }
-        return highestCoordinateY;
-    }
 }

@@ -107,7 +107,7 @@ public class Printers {
     public void printStorageList () {
         System.out.println("\nSeznam skladovych protor");
         Storage[] storagesList = Storage.getStoragesList();
-        if (storagesList == null) {
+        if (storagesList == null || storagesList.length == 0) {
             System.out.println("Zadne prostory nejsou vytvoreny.");
             return;
         }

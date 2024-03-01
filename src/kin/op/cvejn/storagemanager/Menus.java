@@ -47,6 +47,59 @@ public class Menus {
     }
 
     /**
+     * Metoda, která kontroluje jestli již produkt se zadaným názvem neexistuje.
+     * @param name Název na zkontrolování
+     * @return Status nebo nový název produktu
+     */
+
+    public String checkProductExistance(String name) {
+        Product existingProduct = Product.getProductByName(name);
+        if (existingProduct == null) {
+            return name;
+        }
+        System.out.println("Produkt s timto nazvem jiz existuje");
+        String returnText = "";
+        int choice = -1, canContinue = 0;
+        while (canContinue == 0) {
+            System.out.println("Vyberte co se bude nadale dit:\n1. Upravit existujici produkt\n2. Novy nazev\n3. Zrusit tvorbu produktu\nZadejte volbu: ");
+            choice = userInputs.getNumber();
+            switch (choice) {
+                case 1:
+                    System.out.println("Uprava existujiciho produktu (" + name + " - " + existingProduct.getPrice() + "Kc, " + existingProduct.getCount() + " ks):");
+                    System.out.println("Nova cena: ");
+                    existingProduct.setPrice(userInputs.getNumber());
+                    System.out.println("Nove mnozstvi: ");
+                    existingProduct.setCount(userInputs.getNumber());
+                    canContinue = 1;
+                    returnText = "edit";
+                    break;
+                case 2:
+                    String newName = "";
+                    while (existingProduct != null) {
+                        System.out.println("Zadejte novy nazev: ");
+                        newName = userInputs.getString();
+                        existingProduct = Product.getProductByName(newName);
+                        if (existingProduct != null) {
+                            System.out.println("Tento nazev je jiz take zabrany, zkuste jiny.");
+                        } else {
+                            returnText = newName;
+                            canContinue = 1;
+                        }
+                    }
+                    break;
+                case 3:
+                    canContinue = 1;
+                    returnText = "cancel";
+                    break;
+                default:
+                    System.out.println("Neplatny vyber.");
+                    break;
+            }
+        }
+        return returnText;
+    }
+
+    /**
      * Vypíše menu pro správu produktů a volá metody pro vytváření, ukládání, úpravu a odstraňování produktů.
      */
     public void productEditMenu() {
@@ -60,6 +113,16 @@ public class Menus {
                     System.out.println("Vytvorit produkt:");
                     System.out.println("Zadejte nazev produktu: ");
                     String name = userInputs.getString();
+                    String checkStatus = checkProductExistance(name);
+                    if (checkStatus == "edit") {
+                        System.out.println("Produkt upraven");
+                        break;
+                    } else if (checkStatus == "cancel") {
+                        System.out.println("Proces vytvareni produktu zrusen.");
+                        break;
+                    } else {
+                        name = checkStatus;
+                    }
                     System.out.println("Zadejte cenu produktu: ");
                     int price = userInputs.getNumber();
                     System.out.println("Zadejte pocet kusu produktu: ");

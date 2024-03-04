@@ -59,12 +59,17 @@ public class Menus {
         }
         System.out.println("Produkt s timto nazvem jiz existuje");
         String returnText = "";
-        int choice = -1, canContinue = 0;
+        int choice, canContinue = 0;
         while (canContinue == 0) {
             System.out.println("Vyberte co se bude nadale dit:\n1. Upravit existujici produkt\n2. Novy nazev\n3. Zrusit tvorbu produktu\nZadejte volbu: ");
             choice = userInputs.getNumber();
             switch (choice) {
                 case 1:
+                    if (existingProduct == null) {
+                        canContinue = 1;
+                        returnText = "cancel";
+                        break;
+                    }
                     System.out.println("Uprava existujiciho produktu (" + name + " - " + existingProduct.getPrice() + "Kc, " + existingProduct.getCount() + " ks):");
                     System.out.println("Nova cena: ");
                     existingProduct.setPrice(userInputs.getNumber());
@@ -108,20 +113,27 @@ public class Menus {
             printers.printProductsManagementMenu();
             System.out.println("Zadejte volbu: ");
             choice = userInputs.getNumber();
+            OUTER:
             switch (choice) {
                 case 1:
                     System.out.println("Vytvorit produkt:");
                     System.out.println("Zadejte nazev produktu: ");
                     String name = userInputs.getString();
                     String checkStatus = checkProductExistance(name);
-                    if (checkStatus == "edit") {
-                        System.out.println("Produkt upraven");
-                        break;
-                    } else if (checkStatus == "cancel") {
-                        System.out.println("Proces vytvareni produktu zrusen.");
-                        break;
-                    } else {
+                    if (null == checkStatus) {
                         name = checkStatus;
+                    } else {
+                        switch (checkStatus) {
+                            case "edit":
+                                System.out.println("Produkt upraven");
+                                break OUTER;
+                            case "cancel":
+                                System.out.println("Proces vytvareni produktu zrusen.");
+                                break OUTER;
+                            default:
+                                name = checkStatus;
+                                break;
+                        }
                     }
                     System.out.println("Zadejte cenu produktu: ");
                     int price = userInputs.getNumber();

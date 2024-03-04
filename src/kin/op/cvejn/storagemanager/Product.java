@@ -169,6 +169,8 @@ public class Product {
             if (!product.getName().equals(name)) {
                 newProductsList[i] = product;
                 i++;
+            } else if (product.getStored()) {
+                Storage.findStorageByProduct(product).unstoreProduct(product);
             }
         }
         productsList = newProductsList;

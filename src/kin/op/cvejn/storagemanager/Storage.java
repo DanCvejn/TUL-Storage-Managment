@@ -235,4 +235,22 @@ public class Storage {
         }
         Storage.setStoragesList(newStorageList);
     }
+
+    /**
+     * Metoda na získání prostoru podle produktu
+     * @param product Produkt, podle kterého chceme získat prostor
+     * @return Vrací prostor podle produktu
+     */
+    public static Storage findStorageByProduct(Product product) {
+        for (Storage storage : storagesList) {
+            if (storage.storedProducts != null) {
+                for (Product storedProduct : storage.storedProducts) {
+                    if (storedProduct.getName().equals(product.getName())) {
+                        return storage;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }
